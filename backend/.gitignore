@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+lerna-debug.log*
+.log
+logs/
+*.log
+*.log.*
+
+
+# Cache and build files
+.cache/
+dist/
+build/
+tmp/
+temp/
+
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
