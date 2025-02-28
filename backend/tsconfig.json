@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "target": "es2016",                                 
-    "module": "commonjs",               
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                                    
-    "skipLibCheck": true                                 
-  }
+    "target": "ESNext",
+    "module": "CommonJS",
+    "rootDir": "src", // ✅ Specifies where TypeScript should look for source files
+    "outDir": "dist", // ✅ Output directory for compiled files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"], // ✅ Ensures TypeScript compiles all files in src/
+  "exclude": ["node_modules", "dist"] // ✅ Exclude unnecessary folders
 }
