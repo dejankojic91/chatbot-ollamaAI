@@ -1,4 +1,4 @@
-# 🌐 Chatbot Frontend (Ollama AI)
+# 🌐 Chatbot Frontend
 
 This is the **frontend** of the **Chatbot AI** application, built using **React (Vite)**, **TypeScript**, **TailwindCSS**, and **shadcn/ui**.  
 It provides a **modern, interactive user interface** for users to chat with the AI, manage conversation history, and authenticate securely.
