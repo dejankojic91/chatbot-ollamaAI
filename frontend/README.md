@@ -56,4 +56,4 @@ VITE_API_BASE_URL=http://localhost:3005/api
 
 ## 📘 Backend API
 The frontend communicates with the backend API, which is documented in:
-- 📂 [Backend Documentation](backend/README.md)
+- 📂 [Backend Documentation](../backend/README.md)

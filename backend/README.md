@@ -77,4 +77,4 @@ OLLAMA_API_KEY=your_ollama_api_key
 
 ## 📘 Frontend Integration
 The frontend communicates with the backend API, which is documented in:
-- 📂 [Frontend Documentation](frontend/README.md)
+- 📂 [Frontend Documentation](../frontend/README.md)
