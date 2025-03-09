@@ -1,0 +1,66 @@
+import React from 'react'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
+import { useMutation } from '@tanstack/react-query'
+import api from '@/utils/axiosInstance'
+import { useForm } from 'react-hook-form'
+import { useQueryClient } from '@tanstack/react-query'
+
+interface ChatForm {
+  message: string
+}
+
+interface ConversationFormFormProps {
+  conversationId: string | null
+  onMessageSent: (message: { role: 'user' | 'assistant'; content: string }) => void
+  onNewConversation: (conversationId: string) => void
+}
+
+const ConversationForm: React.FC<ConversationFormFormProps> = ({
+  conversationId,
+  onMessageSent,
+  onNewConversation,
+}) => {
+  const { register, handleSubmit, reset } = useForm<ChatForm>()
+  const queryClient = useQueryClient()
+
+  const sendMessageMutation = useMutation({
+    mutationFn: async (data: ChatForm) => {
+      const res = await api.post('/conversations/messages', {
+        conversationId: conversationId || null,
+        content: data.message,
+      })
+      return res.data
+    },
+    onSuccess: (data) => {
+      if (!conversationId) {
+        onNewConversation(data.conversationId)
+      }
+      onMessageSent({ role: 'user', content: data.message.content })
+      onMessageSent(data.message)
+      queryClient.invalidateQueries({ queryKey: ['conversations'] })
+      reset()
+    },
+  })
+
+  const onSubmit = (data: ChatForm) => {
+    if (!data.message.trim()) return
+    sendMessageMutation.mutate(data)
+  }
+
+  return (
+    <form className="flex flex-row items-center gap-2 mt-4" onSubmit={handleSubmit(onSubmit)}>
+      <Textarea
+        {...register('message')}
+        placeholder="Type your message..."
+        className="resize-none"
+      />
+
+      <Button type="submit" className="px-6" disabled={sendMessageMutation.isPending}>
+        {sendMessageMutation.isPending ? 'Sending...' : 'Send'}
+      </Button>
+    </form>
+  )
+}
+
+export default ConversationForm

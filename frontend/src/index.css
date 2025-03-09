@@ -1,6 +1,6 @@
-@import "tailwindcss";
-
+@import 'tailwindcss';
 @plugin "tailwindcss-animate";
+@import 'tailwindcss/utilities';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -121,4 +121,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.radix-state-open [data-state='open'] {
+  background-color: rgba(0, 0, 0, 0.6);
 }

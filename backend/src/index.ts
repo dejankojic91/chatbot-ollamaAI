@@ -1,47 +1,36 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import mongoose from "mongoose";
-import cookieParser from "cookie-parser";
-import OpenAI from 'openai'
+import mongoose from 'mongoose'
+import cookieParser from 'cookie-parser'
+import authRoutes from './routes/authRoutes'
+import conversationRoutes from './routes/conversationRoutes'
 
-import authRoutes from "./routes/authRoutes";
-import chatRoutes from "./routes/chatRoutes";
+dotenv.config()
 
-dotenv.config();
+const app = express()
 
-const app = express();
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'], credentials: true }))
+app.use(express.json())
+app.use(cookieParser())
 
-app.use(cors({ origin: ["http://localhost:5173", "http://localhost:5174"], credentials: true }));
-app.use(express.json());
-app.use(cookieParser());
-
-// MongoDB Connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI as string);
-    console.log("✅ MongoDB Connected");
+    await mongoose.connect(process.env.MONGO_URI as string)
+    console.log('MongoDB Connected')
   } catch (error) {
-    console.error("❌ MongoDB Connection Error:", error);
-    process.exit(1);
+    console.error('MongoDB Connection Error:', error)
+    process.exit(1)
   }
-};
-connectDB();
+}
+connectDB()
 
-const openai = new OpenAI({
-  apiKey: process.env.API_KEY || "",
-});
+app.use('/api/auth', authRoutes)
+app.use('/api/conversations', conversationRoutes)
 
-// ✅ Routes
-app.use("/api/auth", authRoutes
-);
-app.use("/api/chat", chatRoutes);
-
-// ✅ Health Check Route
-app.get("/", (req, res) => {
-  res.send("🚀 API is running...");
-});
+app.get('/', (req, res) => {
+  res.send('🚀 API is running...')
+})
 
 const port = process.env.PORT || 5000
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
-
+app.listen(port, () => console.log(`🚀 Server running on port ${port}`))

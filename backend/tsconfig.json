@@ -3,13 +3,13 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "target": "ESNext",
     "module": "CommonJS",
-    "rootDir": "src", // ✅ Specifies where TypeScript should look for source files
-    "outDir": "dist", // ✅ Output directory for compiled files
+    "rootDir": "src",
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src"], // ✅ Ensures TypeScript compiles all files in src/
-  "exclude": ["node_modules", "dist"] // ✅ Exclude unnecessary folders
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
