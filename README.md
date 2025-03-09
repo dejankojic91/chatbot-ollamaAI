@@ -3,9 +3,9 @@
 A **React + Node.js** chatbot application powered by **Ollama** with user authentication, chat history, and an interactive UI.
 
 ## 📁 Project Structure
-Chatbot-OpenAI/ 
-    ── frontend/ # React-based frontend (Vite, Tailwind, React Query) 
-    ── backend/ # Node.js + Express + MongoDB backend 
+```
+Chatbot-OpenAI/ │── frontend/ # React-based frontend (Vite, Tailwind, React Query) │── backend/ # Node.js + Express + MongoDB backend │── README.md # Main project overview
+```
 
 ## 🛠 Tech Stack
 - **Frontend:** React (Vite), TypeScript, TailwindCSS, React Query, shadcn/ui

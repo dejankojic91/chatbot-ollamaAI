@@ -1,61 +1,59 @@
-# React + TypeScript + Vite
+# 🌐 Chatbot Frontend (Ollama AI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** of the **Chatbot AI** application, built using **React (Vite)**, **TypeScript**, **TailwindCSS**, and **shadcn/ui**.  
+It provides a **modern, interactive user interface** for users to chat with the AI, manage conversation history, and authenticate securely.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses
-  [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+✔ **User Authentication (Login & Register)**  
+✔ **Chat with AI (Powered by Ollama API)**  
+✔ **Conversation History with Sidebar Navigation**  
+✔ **Edit & Delete Messages**  
+✔ **Responsive UI**  
+✔ **Fast & Optimized with React Query & Vite**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable
-type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📂 Project Structure
+```
+📂 frontend/ ├── 📂 src/ # Source code directory │ ├── 📂 components/ # Reusable UI components │ ├── 📂 pages/ # Application pages (Chat, Login, Register) │ ├── 📂 context/ # Authentication & App Context │ ├── 📂 utils/ # API & Helper functions │ ├── 📂 hooks/ # Custom hooks │── 📂 public/ # Static assets (favicon, images, etc.) │── 📜 README.md # Frontend documentation
 ```
 
-You can also install
-[eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x)
-and
-[eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom)
-for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠 Tech Stack
+- **Framework:** React (Vite) + TypeScript
+- **Styling:** TailwindCSS
+- **State Management:** React Query
+- **UI Components:** shadcn/ui
+- **Routing:** React Router
+- **API Handling:** Axios
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+---
+
+## 🔧 Installation & Setup
+### 1️⃣ **Navigate to the Frontend Directory**
+```sh
+cd frontend
 ```
+
+### 2️⃣ **Install Dependencies**
+```sh
+npm install
+```
+
+### 3️⃣ **Run the Development Server**
+```sh
+npm run dev
+```
+The application will be available at http://localhost:5173
+
+## 📂  .env Configuration
+
+VITE_API_BASE_URL=http://localhost:3005/api
+
+
+## 📘 Backend API
+The frontend communicates with the backend API, which is documented in:
+- 📂 [Backend Documentation](backend/README.md)
