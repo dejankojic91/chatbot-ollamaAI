@@ -16,37 +16,37 @@ Chatbot-OpenAI/
 
 ## 🚀 Getting Started
 
-# 1️⃣ **Clone the Repository**
+## 1️⃣ **Clone the Repository**
 ```sh
 git clone https://github.com/yourusername/chatbot-openai.git
 cd chatbot-openai
 npm install
 ```
-# 2️⃣ ** Set Up & Run the Project
+## 2️⃣ ** Set Up & Run the Project**
 
-# Frontend Setup
+## Frontend Setup
 ```sh
 cd frontend
 npm install
 npm run dev
 ```
 
-# Backend Setup
+## Backend Setup
 ```sh
 cd ../backend
 npm install
 npm run dev
 ```
 
-# 📂 ** .env Configuration
+## 📂  .env Configuration
 
-# Backend (backend/.env)
+## Backend (backend/.env)
 PORT=3005
 MONGO_URI=mongodb+srv://<your_mongodb>
 JWT_SECRET=your_secret
 REFRESH_SECRET=your_refresh_secret
 
-# Frontend (frontend/.env)
+## Frontend (frontend/.env)
 VITE_API_BASE_URL=http://localhost:3005/api
 
 ## 📘 Documentation
