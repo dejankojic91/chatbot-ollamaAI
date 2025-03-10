@@ -50,7 +50,9 @@ const Conversation = () => {
 
   return (
     <div className="flex flex-col flex-1 justify-between h-full w-full p-4">
-      <ConversationMessages messages={messages} isLoading={isLoading} />
+      <div className="flex-1 overflow-y-auto p-4 scrollbar-hide">
+        <ConversationMessages messages={messages} isLoading={isLoading} />
+      </div>
       <ConversationForm
         conversationId={conversationId || null}
         onMessageSent={handleNewMessage}

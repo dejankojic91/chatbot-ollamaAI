@@ -74,8 +74,8 @@ const SidebarConversationItem = ({ conv }: { conv: Conversation }) => {
               side="right"
               align="start"
               onCloseAutoFocus={() => setHoveredId(null)}
-                      >
-                {/* TODO: Implement Rename */}
+            >
+              {/* TODO: Implement Rename */}
               <DropdownMenuItem>
                 <Edit className="mr-2 h-4 w-4" />
                 <span>Rename</span>

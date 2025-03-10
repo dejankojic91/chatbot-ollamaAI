@@ -27,7 +27,7 @@ const MainLayout = () => {
       <div className="flex h-screen w-full">
         <AppSidebar />
 
-        <div className="flex flex-col flex-grow ">
+        <div className="flex flex-col flex-1 ">
           <nav className="flex items-center justify-between px-4 py-3 border-b">
             <SidebarTrigger />
 
@@ -55,7 +55,7 @@ const MainLayout = () => {
             </div>
           </nav>
 
-          <div className="flex-grow flex justify-center items-center p-4">
+          <div className="flex-1 overflow-y-auto p-4">
             <Outlet />
           </div>
         </div>

@@ -35,7 +35,7 @@ const ConversationMessages: React.FC<ConversationMessagesProps> = ({ messages, i
               </Avatar>
             )}
             <p
-              className={`p-3 rounded-lg max-w-[75%] ${
+              className={`p-3 mb-2 rounded-lg max-w-[75%] ${
                 msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'
               }`}
             >
