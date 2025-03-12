@@ -1,17 +1,8 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { MessageListProps } from "@/types/conversation"
 
-interface Message {
-  role: 'user' | 'assistant'
-  content: string
-}
-
-interface ConversationMessagesProps {
-  messages: Message[]
-  isLoading: boolean
-}
-
-const ConversationMessages: React.FC<ConversationMessagesProps> = ({ messages, isLoading }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, isLoading }) => {
   return (
     <div className="flex-1 overflow-y-auto p-4 rounded-lg dark:bg-gray-800 flex flex-col gap-4">
       {isLoading ? (
@@ -55,4 +46,4 @@ const ConversationMessages: React.FC<ConversationMessagesProps> = ({ messages, i
   )
 }
 
-export default ConversationMessages
+export default MessageList

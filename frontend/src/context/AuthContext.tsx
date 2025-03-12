@@ -1,10 +1,12 @@
-import { createContext, useContext, ReactNode, useEffect } from 'react'
+import { createContext, useContext, ReactNode } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import api from '@/utils/axiosInstance'
+import { LoginCredentials, RegisterCredentials } from "@/types/auth";
+import { getAuthUser, login, logoutUser, registerUser } from "@/api/auth";
 
 interface AuthContextType {
-  user: { _id: string; username: string } | null
-  login: (data: { email: string; password: string }) => Promise<void>
+  user: { _id: string; username: string, firstName: string, lastName: string } | null
+  login: (data: LoginCredentials) => Promise<void>
+  register: (data: RegisterCredentials) => Promise<void>
   logout: () => void
 }
 
@@ -17,32 +19,39 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     queryKey: ['authUser'],
     queryFn: async () => {
       const token = localStorage.getItem('accessToken')
-      console.log('Token', token)
-      if (!token) {
-        throw new Error('No token found')
-      }
-      const response = await api.get('/auth/user')
-      return response.data
+      if (!token) throw new Error('No token found')
+
+      return await getAuthUser();
+
     },
     enabled: !!localStorage.getItem('accessToken'),
     retry: false,
     staleTime: 1000 * 60 * 5,
   })
 
+
   const loginMutation = useMutation({
-    mutationFn: async (data: { email: string; password: string }) => {
-      const response = await api.post('/auth/login', data)
-      localStorage.setItem('accessToken', response.data.accessToken)
-      api.defaults.headers['Authorization'] = `Bearer ${response.data.accessToken}`
+    mutationFn: async (data: LoginCredentials) => {
+      await login(data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['authUser'] })
     },
   })
 
+
+  const registerMutation = useMutation({
+    mutationFn: async (data: RegisterCredentials) => {
+      await registerUser(data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['authUser'] });
+    },
+  });
+
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      await api.post('/auth/logout')
+      await logoutUser();
     },
     onSuccess: () => {
       queryClient.setQueryData(['authUser'], null)
@@ -51,21 +60,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     },
   })
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      if (!localStorage.getItem('accessToken')) {
-        console.warn('Token removed. Redirecting to login...')
-        window.location.href = '/login'
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
-
   return (
     <AuthContext.Provider
-      value={{ user, login: loginMutation.mutateAsync, logout: logoutMutation.mutate }}
+      value={{
+        user,
+        login: loginMutation.mutateAsync,
+        register: registerMutation.mutateAsync,
+        logout: logoutMutation.mutate,
+      }}
     >
       {isLoading ? <p>Loading...</p> : children}
     </AuthContext.Provider>

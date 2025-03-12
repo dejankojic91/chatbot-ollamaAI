@@ -11,14 +11,14 @@ import {
 } from '@/components/ui/sidebar'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import SidebarConversationItem from './SidebarConversationItem'
+import SidebarConversationItem from "./SidebarHistoryItem"
 
 interface Conversation {
   _id: string
   title: string
 }
 
-const AppSidebar = () => {
+const SidebarHistoryItem = () => {
   const [search, setSearch] = useState('')
 
   const { data: conversations, isLoading } = useQuery({
@@ -77,4 +77,4 @@ const AppSidebar = () => {
   )
 }
 
-export default AppSidebar
+export default SidebarHistoryItem

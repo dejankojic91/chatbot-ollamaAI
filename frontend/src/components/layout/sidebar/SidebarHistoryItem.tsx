@@ -18,13 +18,9 @@ import {
 } from '@/components/ui/alert-dialog'
 import { MoreHorizontal, Edit, Trash } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { SidebarConversationItemProps } from "@/types/conversation"
 
-interface Conversation {
-  _id: string
-  title: string
-}
-
-const SidebarConversationItem = ({ conv }: { conv: Conversation }) => {
+const SidebarHistoryItem: React.FC<SidebarConversationItemProps> = ({ conv }) => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -120,4 +116,4 @@ const SidebarConversationItem = ({ conv }: { conv: Conversation }) => {
   )
 }
 
-export default SidebarConversationItem
+export default SidebarHistoryItem

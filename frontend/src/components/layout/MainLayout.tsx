@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/context/AuthContext'
-import AppSidebar from './AppSidebar'
+import AppSidebar from './sidebar/AppSidebar'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -15,8 +15,6 @@ import { Plus } from 'lucide-react'
 const MainLayout = () => {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
-
-  console.log(user)
 
   if (user === null) {
     return <Navigate to="/login" replace />

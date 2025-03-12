@@ -5,18 +5,13 @@ import { useMutation } from '@tanstack/react-query'
 import api from '@/utils/axiosInstance'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
+import { MessageFormProps } from "@/types/conversation"
 
 interface ChatForm {
   message: string
 }
 
-interface ConversationFormFormProps {
-  conversationId: string | null
-  onMessageSent: (message: { role: 'user' | 'assistant'; content: string }) => void
-  onNewConversation: (conversationId: string) => void
-}
-
-const ConversationForm: React.FC<ConversationFormFormProps> = ({
+const MessageForm: React.FC<MessageFormProps> = ({
   conversationId,
   onMessageSent,
   onNewConversation,
@@ -80,4 +75,4 @@ const ConversationForm: React.FC<ConversationFormFormProps> = ({
   )
 }
 
-export default ConversationForm
+export default MessageForm

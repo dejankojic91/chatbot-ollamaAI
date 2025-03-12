@@ -1,20 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import api from '@/utils/axiosInstance'
-import ConversationMessages from '@/components/conversation/ConversationMessages'
-import ConversationForm from '@/components/conversation/ConversationForm'
-
-interface Message {
-  role: 'user' | 'assistant'
-  content: string
-}
-
-interface ConversationProps {
-  _id: string
-  title: string
-  messages: Message[]
-}
+import ConversationMessages from '@/components/conversation/MessageList'
+import ConversationForm from '@/components/conversation/MessageForm'
+import { fetchConversationById } from "@/api/conversation"
+import { ConversationProps, Message } from "@/types/conversation"
 
 const Conversation = () => {
   const { id: conversationId } = useParams()
@@ -24,13 +14,9 @@ const Conversation = () => {
   const {
     data: conversation,
     isLoading,
-    refetch,
   } = useQuery<ConversationProps, Error>({
     queryKey: ['conversation', conversationId],
-    queryFn: async (): Promise<ConversationProps> => {
-      const res = await api.get(`/conversations/${conversationId}`)
-      return res.data
-    },
+    queryFn: async () => await fetchConversationById(conversationId!),
     enabled: !!conversationId,
   })
 
