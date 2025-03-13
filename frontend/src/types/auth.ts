@@ -1,16 +1,16 @@
 export interface LoginCredentials {
-    email: string
-    password: string 
+  email: string
+  password: string
 }
 
 export interface RegisterCredentials {
-    firstName: string
-    lastName: string
-    username: string
-    email: string
-    password: string
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
 }
 
 export interface AuthResponse {
-    accessToken: string;
+  accessToken: string
 }

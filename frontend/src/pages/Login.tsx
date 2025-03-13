@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAuth } from '@/context/AuthContext'
 import { isAxiosError } from '@/utils/errorHandler'
-import { z } from "zod"
-import { Loader2 } from "lucide-react";
-import { toast } from "sonner"
+import { z } from 'zod'
+import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 import {
   Form,
   FormControl,
@@ -17,14 +17,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from '@/components/ui/form'
 
 const Login = () => {
   const { login } = useAuth()
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: '', password: '' }
+    defaultValues: { email: '', password: '' },
   })
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
@@ -33,7 +33,7 @@ const Login = () => {
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error?.response?.data?.message || error?.message || 'Login failed', {
-          className: "bg-rose-400! text-white!",
+          className: 'bg-rose-400! text-white!',
           position: 'top-right',
         })
       }
@@ -70,21 +70,30 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input {...field} type="password" placeholder="Password" autoComplete="current-password" />
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              
-              <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={form.formState.isSubmitting}>
+
+              <Button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2"
+                disabled={form.formState.isSubmitting}
+              >
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Logging in...
                   </>
                 ) : (
-                  "Login"
+                  'Login'
                 )}
               </Button>
 

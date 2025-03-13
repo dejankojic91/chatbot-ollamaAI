@@ -1,6 +1,5 @@
-
 export interface Message {
-  role: "user" | "assistant"
+  role: 'user' | 'assistant'
   content: string
 }
 
@@ -15,8 +14,7 @@ export interface MessageListProps {
   isLoading: boolean
 }
 
-
-export interface ConversationForm {
+export interface SendMessage {
   message: string
 }
 
@@ -26,8 +24,6 @@ export interface MessageFormProps {
   onNewConversation: (conversationId: string) => void
 }
 
-
-// Sidebar 
 export interface ConversationHistory {
   _id: string
   title: string
@@ -36,4 +32,3 @@ export interface ConversationHistory {
 export interface SidebarConversationItemProps {
   conv: ConversationHistory
 }
-

@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Plus } from 'lucide-react'
+import { getUserInitials } from '@/utils/user'
 
 const MainLayout = () => {
   const { user, logout } = useAuth()
@@ -41,10 +42,20 @@ const MainLayout = () => {
 
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Avatar>
-                    <AvatarImage src="https://ui-avatars.com/api/?name=User" alt="User Avatar" />
-                    {/* <AvatarFallback>{user?.user}</AvatarFallback> */}
-                  </Avatar>
+                  <div className="flex items-center gap-2 px-1  text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage
+                        src={`https://ui-avatars.com/api/?name=${getUserInitials(user?.firstName, user?.lastName)}`}
+                        alt="User Avatar"
+                      />
+                      <AvatarFallback className="rounded-lg">
+                        {getUserInitials(user?.firstName, user?.lastName)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">{user.username}</span>
+                    </div>
+                  </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>

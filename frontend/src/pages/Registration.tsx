@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAuth } from '@/context/AuthContext'
-import { z } from "zod"
+import { z } from 'zod'
 
 import {
   Form,
@@ -15,11 +15,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Loader2 } from "lucide-react"
-import { toast } from "sonner"
-import { isAxiosError } from "@/utils/errorHandler"
-
+} from '@/components/ui/form'
+import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
+import { isAxiosError } from '@/utils/errorHandler'
 
 const Registration = () => {
   const { register } = useAuth()
@@ -27,13 +26,12 @@ const Registration = () => {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      password: '',
     },
-
   })
 
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
@@ -42,7 +40,7 @@ const Registration = () => {
     } catch (error) {
       if (isAxiosError(error)) {
         toast.error(error?.response?.data?.message || error?.message || 'Registration failed', {
-          className: "bg-rose-400! text-white!",
+          className: 'bg-rose-400! text-white!',
           position: 'top-right',
         })
       }
@@ -118,21 +116,30 @@ const Registration = () => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input {...field} type="password" placeholder="Password" autoComplete="current-password" />
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={form.formState.isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2"
+                disabled={form.formState.isSubmitting}
+              >
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Registering...
                   </>
                 ) : (
-                  "Register"
+                  'Register'
                 )}
               </Button>
 

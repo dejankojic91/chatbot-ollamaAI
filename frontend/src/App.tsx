@@ -6,31 +6,28 @@ import { PublicRoute, PrivateRoute } from './components/auth/ProtectedRoute'
 import AuthLayout from '@/components/layout/AuthLayout'
 import MainLayout from '@/components/layout/MainLayout'
 import Conversation from './pages/Conversation'
-import { Toaster } from "sonner"
+import { Toaster } from 'sonner'
 
 const App = () => {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route element={<PublicRoute />}>
-            <Route element={<AuthLayout />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Route>
+    <Router>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Route>
+        </Route>
 
-          <Route element={<PrivateRoute />}>
-            <Route element={<MainLayout />}>
-              <Route path="/conversation" element={<Conversation key="conversation" />} />
-              <Route path="/conversation/:id" element={<Conversation key="edit-conversation" />} />
-            </Route>
+        <Route element={<PrivateRoute />}>
+          <Route element={<MainLayout />}>
+            <Route path="/conversation" element={<Conversation key="conversation" />} />
+            <Route path="/conversation/:id" element={<Conversation key="edit-conversation" />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Router>
-      <Toaster />
-    </>
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Router>
   )
 }
 

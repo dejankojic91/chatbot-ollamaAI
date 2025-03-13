@@ -3,20 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import ConversationMessages from '@/components/conversation/MessageList'
 import ConversationForm from '@/components/conversation/MessageForm'
-import { fetchConversationById } from "@/api/conversation"
-import { ConversationProps, Message } from "@/types/conversation"
+import { fetchConversationById } from '@/api/conversation'
+import { ConversationProps, Message } from '@/types/conversation'
 
 const Conversation = () => {
-  const { id: conversationId } = useParams()
+  const { id: conversationId } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([])
 
-  const {
-    data: conversation,
-    isLoading,
-  } = useQuery<ConversationProps, Error>({
+  const { data: conversation, isLoading } = useQuery<ConversationProps, Error>({
     queryKey: ['conversation', conversationId],
-    queryFn: async () => await fetchConversationById(conversationId!),
+    queryFn: async () => await fetchConversationById(conversationId as string),
     enabled: !!conversationId,
   })
 
